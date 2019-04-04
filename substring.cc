@@ -7,19 +7,40 @@
 
 //directives
 #include <iostream>
+#include <iomanip>
 #include <string>
+using namespace std;
 
 //prototypes
-
+int checkString(string mainString, string target);
 
 
 //begin program
 int main(int argc, const char *argv[]) {
-
+    string mainString;
+    string substring;
+    cout << "Enter some text: ";
+    getline(cin, mainString);
+    //cout << mainString << endl;
+    checkString(mainString, substring);
+    return 0;
 }
 
-
 //subsidary definitions
+int checkString(string mainString, string target) {
+    int unsigned position = 0;
+    int counter = 0;
+    while(position != string::npos)
+    {
+        position = mainString.find(target, position);
+        if(position != string::npos)
+        {
+            counter ++;
+            position ++;
+        }
+    }    
+    return counter;
+}
 
 /*
  *Guidelines:

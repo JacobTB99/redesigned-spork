@@ -14,8 +14,19 @@ using namespace std;
 
 //prototypes
 int checkString(string mainString, string target);
+/*
+    * Purpose: Checks whether a given target substring exists within the primary string.
+    * Parameters: mainString is the primary string to search, target is the substring to search for.
+    * Preconditions: Both input parameters must be strings.
+    * Postconditions: Returns the amount of occurrences of the substring within the primary string.
+*/
 void caseMatch(string &string);
-
+/*
+    * Purpose: Sets all characters of a string to be lower case.
+    * Parameters: Takes the parameter string of type string by reference.
+    * Preconditions: The argument must be a string.
+    * Postconditions: The string is converted to all lower case.
+*/
 
 //begin program
 int main() {
@@ -29,14 +40,21 @@ int main() {
     getline(cin, substring);
     printstring = substring;
     count = checkString(mainString, substring);
-    cout << "The substring " << substring << " occurs " << count << " times." << endl;
+    if(count == -1)
+    {
+        cout << "The substring " << substring << " does not occur in the main string." <<  endl;
+    }
+    else
+    {
+    cout << "The substring " << substring << " occurs " << count << " times in the main string." << endl;
+    }
     return 0;
 }
 
 //subsidary definitions
 int checkString(string mainString, string target) {
     caseMatch(mainString);
-    caseMatch(mainString);
+    caseMatch(target);
     size_t position = 0;
     size_t newPosition;
     int count = 0;

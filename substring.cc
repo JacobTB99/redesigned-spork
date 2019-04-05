@@ -9,39 +9,67 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <cctype>
 using namespace std;
 
 //prototypes
 int checkString(string mainString, string target);
+void caseMatch(string &string);
 
 
 //begin program
-int main(int argc, const char *argv[]) {
+int main() {
     string mainString;
     string substring;
+    string printstring;
+    int count;
     cout << "Enter some text: ";
     getline(cin, mainString);
-    //cout << mainString << endl;
-    checkString(mainString, substring);
+    cout << "Enter a target substring: ";
+    getline(cin, substring);
+    printstring = substring;
+    count = checkString(mainString, substring);
+    cout << "The substring " << substring << " occurs " << count << " times." << endl;
     return 0;
 }
 
 //subsidary definitions
 int checkString(string mainString, string target) {
-    int unsigned position = 0;
-    int counter = 0;
+    caseMatch(mainString);
+    caseMatch(mainString);
+    size_t position = 0;
+    size_t newPosition;
+    int count = 0;
+    position = mainString.find(target);
+    if(position == string::npos)
+    {
+        return -1;
+    }
     while(position != string::npos)
     {
-        position = mainString.find(target, position);
-        if(position != string::npos)
-        {
-            counter ++;
-            position ++;
-        }
-    }    
-    return counter;
+        count ++;
+        newPosition = position + 1;
+        position = mainString.find(target, newPosition);
+    }
+/*
+    {
+        position ++;
+        count ++;
+        newPosition = mainString.find(target, position);
+    }*/
+    return count;
 }
 
+void caseMatch(string &string) {
+    int length = string.length();
+    for(int i = 0; i < length; i ++)
+    {
+        if(isupper(string[i]))
+        {
+            string[i] = tolower(string[i]);
+        }
+    }
+}
 /*
  *Guidelines:
  *
